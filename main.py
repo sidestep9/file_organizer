@@ -19,6 +19,9 @@ if not target_folder.exists():
     sys.exit()
 
 for file in target_folder.iterdir():
+    if not file.is_file:
+        continue
+    
     for ext, folder in file_types.items():
         if file.suffix.lower() == ext:
             (target_folder / folder).mkdir(exist_ok=True)
