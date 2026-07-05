@@ -3,7 +3,12 @@ import shutil
 
 file_types = {
     ".jpg": "IMAGES",
-    ".png": "IMAGES"
+    ".png": "IMAGES",
+    ".pdf": "PDFs",
+    ".docx": "DOCUMENTS",
+    ".mp3": "AUDIOS",
+    ".wav": "AUDIOS",
+    ".mp4": "VIDEOS"
 }
 
 target_folder = Path("D:/Ghani/Project")
