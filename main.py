@@ -20,8 +20,18 @@ if not target_folder.exists():
 
 for file in target_folder.iterdir():
     for ext, folder in file_types.items():
-        if file.suffixes.lower() == ext:
+        if file.suffix.lower() == ext:
             (target_folder / folder).mkdir(exist_ok=True)
-            shutil.move(file, (target_folder / folder))
+            numbering = 0
+            destination = (target_folder / folder / file.parts[-1])
+
+            while True:
+                if destination.exists():
+                    numbering += 1
+                    destination = (target_folder / folder / (file.stem + "(" + str(numbering) + ")" +"".join(file.suffixes)))
+                else:
+                    shutil.move(file, destination)
+                    break
+
             print(f"Moving: {str(file.parts[-1])} to {(target_folder / folder)}")
             break
