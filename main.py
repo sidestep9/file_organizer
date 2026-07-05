@@ -20,7 +20,7 @@ if not target_folder.exists():
 
 for file in target_folder.iterdir():
     for ext, folder in file_types.items():
-        if str(file).endswith(ext):
+        if file.suffixes.lower() == ext:
             (target_folder / folder).mkdir(exist_ok=True)
             shutil.move(file, (target_folder / folder))
             print(f"Moving: {str(file.parts[-1])} to {(target_folder / folder)}")
