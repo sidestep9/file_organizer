@@ -1,5 +1,5 @@
 from pathlib import Path
-import shutil
+import shutil, sys
 
 file_types = {
     ".jpg": "IMAGES",
@@ -9,9 +9,15 @@ file_types = {
     ".mp3": "AUDIOS",
     ".wav": "AUDIOS",
     ".mp4": "VIDEOS"
-}
+} # Can always add more!
 
-target_folder = Path("D:/Ghani/Project")
+print("Enter target folder")
+
+target_folder = Path(input("> "))
+if not target_folder.exists():
+    print("Couldn't find path!")
+    sys.exit()
+
 for file in target_folder.iterdir():
     for ext, folder in file_types.items():
         if str(file).endswith(ext):
