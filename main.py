@@ -28,12 +28,12 @@ for file in target_folder.iterdir():
 
     (target_folder / folder).mkdir(exist_ok=True)
     numbering = 0
-    destination = (target_folder / folder / file.parts[-1])
+    destination = (target_folder / folder / file.name)
 
     while True:
         if destination.exists():
             numbering += 1
-            destination = (target_folder / folder / (file.stem + "(" + str(numbering) + ")" +"".join(file.suffixes)))
+            destination = (target_folder / folder / (file.stem + "(" + str(numbering) + ")" +"".join(file.suffixes).lower()))
         else:
             shutil.move(file, destination)
             print(f"Moving: {str(file.parts[-1])} to {(target_folder / folder)}")
